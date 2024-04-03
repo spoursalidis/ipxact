@@ -994,14 +994,14 @@ USAGE
                     f.write(printStr)
                     log.info("Wrote c header to %s" % args.outc)
                 
-        except IOError as (errno, strerror):
-            log.error("I/O error({0}): {1}".format(errno, strerror))
+        except IOError as err:
+            log.error("I/O error({0}): {1}".format(err.errno, err.strerror))
              
         return 0
     except KeyboardInterrupt:
         ### handle keyboard interrupt ###
         return 0
-    except Exception, e:
+    except Exception(e):
         if DEBUG or TESTRUN:
             raise(e)
         indent = len(program_name) * " "
